@@ -8,11 +8,13 @@ public class ProjectileScript : MonoBehaviour
 
     public Transform enemyPos;
     private Transform player;
+    [SerializeField] private Transform proj;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyPos = FindClosestEnemy();
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     Transform FindClosestEnemy()

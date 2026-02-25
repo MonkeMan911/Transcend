@@ -137,3 +137,4 @@ MonoBehaviour:
   deathDistance: 15
   homingDistance: 10
   enemyPos: {fileID: 0}
+  proj: {fileID: 6346114340408833152}
