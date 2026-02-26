@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     public Shoot shoot;
     public float weaponCooldown;
     public int currentClip, maxClipSize = 10;
+    public bool isReloading;
 
     private void Start()
     {
@@ -48,10 +49,12 @@ public class PlayerScript : MonoBehaviour
         currentClip += reloadAmount;
     }
 
-    IEnumerator ShootCooldown() 
+    public IEnumerator ShootCooldown() 
     {
+        isReloading = true;
         yield return new WaitForSeconds(weaponCooldown);
         Reload();
+        isReloading = false;
     } 
 
 }

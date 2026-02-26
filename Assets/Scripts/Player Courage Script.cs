@@ -8,6 +8,10 @@ public class PlayerCourageScript : MonoBehaviour
     public int maxCourage;
     public int currentCourage;
 
+    private void Start()
+    {
+        currentCourage = maxCourage;
+    }
     public void ChangeCourage(int amount)
     {
         currentCourage += amount;
