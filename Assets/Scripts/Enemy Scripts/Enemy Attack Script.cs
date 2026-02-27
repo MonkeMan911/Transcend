@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyAttackScript : MonoBehaviour
 {
-    public int damage = 1;
+    [SerializeField] private int damage = 1;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<PlayerCourageScript>().ChangeCourage(- damage);
+        collision.gameObject.GetComponent<PlayerCourageScript>().ChangeCourage(-damage);
     }
 }
