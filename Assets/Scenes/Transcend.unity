@@ -313,10 +313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9547ddc32dcf9d54d97fbcaf47e2dc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot:
-    prefab: {fileID: 6621851399627375400, guid: 244bde07a5f0eeb4e9597233b8e97b25, type: 3}
-  shootBool: 0
-  singleShootCD: 1
+  projectilePrefab: {fileID: 6621851399627375400, guid: 244bde07a5f0eeb4e9597233b8e97b25, type: 3}
+  shootCooldown: 1
+  player: {fileID: 1210283736}
 --- !u!1 &240727702
 GameObject:
   m_ObjectHideFlags: 0

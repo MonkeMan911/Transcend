@@ -1,49 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAttackParameterScript : MonoBehaviour
 {
-    public enemyShoot shoot;
-    [SerializeField] private bool shootBool;
-    [SerializeField] private float singleShootCD;
+    [Header("Shooting Settings")]
+    public GameObject projectilePrefab;
+    public float shootCooldown = 1f;
 
-    public void OnTriggerStay2D(Collider2D collision)
+    [Header("References")]
+    public Transform player;
+
+    private bool playerInRange = false;
+    private bool isShooting = false;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            shootBool = true;
-            StartCoroutine(EnemyShootSingle());
+            playerInRange = true;
+
+            if (!isShooting)
+                StartCoroutine(ShootLoop());
         }
     }
 
-    public void EnemyShootPlayer()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        GameObject projectile = Instantiate(shoot.prefab);
+        if (collision.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
 
-        projectile.transform.position = transform.position;
+    private System.Collections.IEnumerator ShootLoop()
+    {
+        isShooting = true;
 
-        Vector3 dir = projectile.transform.position;
+        while (playerInRange)
+        {
+            ShootAtPlayer();
+            yield return new WaitForSeconds(shootCooldown);
+        }
+
+        isShooting = false;
+    }
+
+    private void ShootAtPlayer()
+    {
+        if (player == null) return;
+
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+        Vector3 dir = (player.position - transform.position).normalized;
+
         projectile.transform.up = dir;
 
-        projectile.transform.Translate(Vector2.up * 1.5f);
+        projectile.transform.Translate(Vector2.up * 1.5f, Space.Self);
     }
 
-    IEnumerator EnemyShootSingle() 
-    {
-        yield return new WaitForSeconds(singleShootCD);
-        while (shootBool == true)
-        {
-            EnemyShootPlayer();
-        }
-        shootBool = false;
-    }
-}
-
-[System.Serializable]
-public struct enemyShoot
-{
-    public GameObject prefab;
 }

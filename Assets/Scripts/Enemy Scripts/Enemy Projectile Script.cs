@@ -5,6 +5,7 @@ public class EnemyProjectileScript : MonoBehaviour
     public float speed = 10f;
     public float deathDistance = 20f;
     public float homingDistance = 10f;
+    [SerializeField] private int anxiety;
 
     public Transform playerPos;
     private Transform enemy;
@@ -70,10 +71,13 @@ public class EnemyProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Hit Player!");
-            Destroy(gameObject);
-        }
+            PlayerAnxietyScript anxietyScript = collision.gameObject.GetComponent<PlayerAnxietyScript>();
+
+            if (anxietyScript != null)
+            {
+                anxietyScript.ChangeAnxiety(anxiety);
+                Debug.Log("Hit Player!");
+                Destroy(gameObject);
+            }
     }
 }

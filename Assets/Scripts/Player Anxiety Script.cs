@@ -12,7 +12,7 @@ public class PlayerAnxietyScript : MonoBehaviour
     [SerializeField] private float delayTime;
 
     private float smoothVelocity = 0f;
-    private bool isTickingDown = false;
+    private Coroutine tickCoroutine;
 
     public Slider anxietySlider;
     [SerializeField] PlayerCourageScript playerCourageScript;
@@ -29,17 +29,20 @@ public class PlayerAnxietyScript : MonoBehaviour
         currentAnxiety += amount;
         anxietySlider.value = currentAnxiety;
 
-        if (currentAnxiety >= maxAnxiety && !isTickingDown)
+        if (currentAnxiety >= maxAnxiety)
         {
             playerCourageScript.ChangeCourage(-damage);
-            StartCoroutine(AnxietyTickDown());
+
+            if (tickCoroutine != null)
+                StopCoroutine(tickCoroutine);
+
+            tickCoroutine = StartCoroutine(AnxietyTickDown());
         }
     }
 
     IEnumerator AnxietyTickDown()
     {
         yield return new WaitForSeconds(delayTime);
-        isTickingDown = true;
 
         while (currentAnxiety > minAnxiety)
         {
@@ -47,11 +50,16 @@ public class PlayerAnxietyScript : MonoBehaviour
             yield return new WaitForSeconds(tickDownSpeed);
         }
 
-        isTickingDown = false;
+        tickCoroutine = null; // reset
     }
 
     void Update()
     {
-        anxietySlider.value = Mathf.SmoothDamp(anxietySlider.value, currentAnxiety, ref smoothVelocity, 0.15f);
+        anxietySlider.value = Mathf.SmoothDamp(
+            anxietySlider.value,
+            currentAnxiety,
+            ref smoothVelocity,
+            0.15f
+        );
     }
 }
