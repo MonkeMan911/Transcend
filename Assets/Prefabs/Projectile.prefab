@@ -136,5 +136,6 @@ MonoBehaviour:
   speed: 5
   deathDistance: 15
   homingDistance: 10
+  acceptanceNum: 1
   enemyPos: {fileID: 0}
   proj: {fileID: 6346114340408833152}

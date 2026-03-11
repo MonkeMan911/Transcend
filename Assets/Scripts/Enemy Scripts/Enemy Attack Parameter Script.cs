@@ -44,7 +44,7 @@ public class EnemyAttackParameterScript : MonoBehaviour
         isShooting = false;
     }
 
-    private void ShootAtPlayer()
+    public void ShootAtPlayer()
     {
         if (player == null) return;
 
@@ -55,6 +55,13 @@ public class EnemyAttackParameterScript : MonoBehaviour
         projectile.transform.up = dir;
 
         projectile.transform.Translate(Vector2.up * 1.5f, Space.Self);
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        playerInRange = false;
+        isShooting = false;
     }
 
 }

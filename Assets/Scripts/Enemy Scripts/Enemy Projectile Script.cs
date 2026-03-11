@@ -51,7 +51,7 @@ public class EnemyProjectileScript : MonoBehaviour
         // Homing behavior
         if (distanceToEnemy < homingDistance)
         {
-            // Rotate toward enemy
+            // Rotate toward Player
             Vector2 dir = (playerPos.position - transform.position).normalized;
             transform.up = dir;
 

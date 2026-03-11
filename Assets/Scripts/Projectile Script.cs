@@ -5,7 +5,7 @@ public class ProjectileScript : MonoBehaviour
     public float speed = 10f;
     public float deathDistance = 20f;
     public float homingDistance = 10f;
-
+    [SerializeField] private int acceptanceNum;
     public Transform enemyPos;
     private Transform player;
     [SerializeField] private Transform proj;
@@ -70,10 +70,13 @@ public class ProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        EnemyScript enemyScript = collision.gameObject.GetComponent<EnemyScript>();
+        if (enemyScript != null)
         {
+            enemyScript.ChangeAcceptance(acceptanceNum);
             Debug.Log("Hit Enemy!");
             Destroy(gameObject);
+            
         }
     }
 }
