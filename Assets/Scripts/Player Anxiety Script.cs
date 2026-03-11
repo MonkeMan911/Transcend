@@ -4,15 +4,18 @@ using UnityEngine.UI;
 
 public class PlayerAnxietyScript : MonoBehaviour
 {
+    [Header("Anxiety Settings")]
     [SerializeField] private int damage = 1;
-    [SerializeField] private int maxAnxiety;
-    [SerializeField] private int minAnxiety;
-    [SerializeField] private float tickDownSpeed = 1f;
-    [SerializeField] private int currentAnxiety;
-    [SerializeField] private float delayTime;
+    [SerializeField] private int maxAnxiety = 10;
+    [SerializeField] private int minAnxiety = 0;
+    [SerializeField] private float tickDownSpeed = 0.5f;
+    [SerializeField] private float cooldownTime = 2f;    
 
+    private int currentAnxiety;
     private float smoothVelocity = 0f;
+
     private Coroutine tickCoroutine;
+    private float cooldownTimer = 0f;
 
     public Slider anxietySlider;
     [SerializeField] PlayerCourageScript playerCourageScript;
@@ -22,35 +25,47 @@ public class PlayerAnxietyScript : MonoBehaviour
         currentAnxiety = minAnxiety;
         anxietySlider.maxValue = maxAnxiety;
         anxietySlider.value = minAnxiety;
+
+        tickCoroutine = StartCoroutine(AnxietyTickDown());
     }
 
     public void ChangeAnxiety(int amount)
     {
-        currentAnxiety += amount;
+        currentAnxiety = Mathf.Clamp(currentAnxiety + amount, minAnxiety, maxAnxiety);
         anxietySlider.value = currentAnxiety;
+
+
+        cooldownTimer = cooldownTime;
+
 
         if (currentAnxiety >= maxAnxiety)
         {
             playerCourageScript.ChangeCourage(-damage);
-
-            if (tickCoroutine != null)
-                StopCoroutine(tickCoroutine);
-
-            tickCoroutine = StartCoroutine(AnxietyTickDown());
         }
     }
 
     IEnumerator AnxietyTickDown()
     {
-        yield return new WaitForSeconds(delayTime);
-
-        while (currentAnxiety > minAnxiety)
+        while (true)
         {
-            currentAnxiety -= 1;
-            yield return new WaitForSeconds(tickDownSpeed);
-        }
 
-        tickCoroutine = null; // reset
+            if (cooldownTimer > 0)
+            {
+                cooldownTimer -= Time.deltaTime;
+                yield return null;
+                continue;
+            }
+
+            if (currentAnxiety > minAnxiety)
+            {
+                currentAnxiety -= 1;
+                yield return new WaitForSeconds(tickDownSpeed);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
     }
 
     void Update()
