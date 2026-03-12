@@ -15,6 +15,7 @@ public class EnemyScript : MonoBehaviour
     public Slider acceptanceSlider;
     [SerializeField] private int anxiety = 1;
     [SerializeField] private EnemyAttackParameterScript enemyParameterScript;
+    public bool isFriend;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class EnemyScript : MonoBehaviour
         acceptanceSlider.maxValue = maxAcceptance;
         acceptanceSlider.value = minAcceptance;
         GetComponent<Collider2D>();
+        isFriend = false;
     }
 
     private void Update()
@@ -39,10 +41,11 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.Log("Switchin Sides");
 
-            // Disable the shooting script permanently
+
             if (enemyParameterScript != null)
             {
                 enemyParameterScript.enabled = false;
+                isFriend = true;
             }
             else
             {
