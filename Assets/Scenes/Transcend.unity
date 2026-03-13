@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 152891186}
   Friend: {fileID: 152891185}
-  offset: {x: 2, y: 0, z: 0}
+  offset: {x: 4, y: 0, z: 0}
 --- !u!1 &1234200495
 GameObject:
   m_ObjectHideFlags: 0
