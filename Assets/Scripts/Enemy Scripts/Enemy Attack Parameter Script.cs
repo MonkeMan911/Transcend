@@ -6,6 +6,8 @@ public class EnemyAttackParameterScript : MonoBehaviour
     public GameObject projectilePrefab;
     public float shootCooldown = 1f;
 
+    [Header("Movement")]
+    public float speed;
     [Header("References")]
     public Transform player;
 
@@ -20,6 +22,8 @@ public class EnemyAttackParameterScript : MonoBehaviour
 
             if (!isShooting)
                 StartCoroutine(ShootLoop());
+
+            transform.position = Vector2.Lerp(transform.position, player.position, Time.deltaTime * speed);
         }
     }
 

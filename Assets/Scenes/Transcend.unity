@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6621851399627375400, guid: 244bde07a5f0eeb4e9597233b8e97b25, type: 3}
   shootCooldown: 1
+  speed: 2
   player: {fileID: 1210283736}
 --- !u!1 &240727702
 GameObject:
@@ -769,6 +770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 815866306}
   - component: {fileID: 815866305}
+  - component: {fileID: 815866307}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -807,6 +809,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &815866307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815866304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af24d978458c4b4d85321ecd4e55a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 2f00494fa73961d408d3bdd3bae339e8, type: 3}
 --- !u!1 &1013705997
 GameObject:
   m_ObjectHideFlags: 0
