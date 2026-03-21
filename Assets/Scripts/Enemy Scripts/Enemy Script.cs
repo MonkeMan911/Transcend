@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
+    [Header("Friend Stuff")]
+    public int damageBonus = 1;
+    private bool bonusApplied = false;
+    [SerializeField] private EnemyAttackParameterScript enemyParameterScript;
+    [SerializeField] EnemiestoLoversScript enemiestoLoversScript;
+    public bool isFriend;
+
+    [Header("Health Bar")]
     [SerializeField] private Camera acceptanceBarCamera;
     [SerializeField] private Transform enemyBarPos;
     [SerializeField] private Vector3 offset;
@@ -14,17 +22,20 @@ public class EnemyScript : MonoBehaviour
     public int currentAcceptance;
     public Slider acceptanceSlider;
     [SerializeField] private int anxiety = 1;
-    [SerializeField] private EnemyAttackParameterScript enemyParameterScript;
-    public bool isFriend;
+
 
     private void Start()
     {
         currentAcceptance = minAcceptance;
         acceptanceSlider.maxValue = maxAcceptance;
         acceptanceSlider.value = minAcceptance;
-        GetComponent<Collider2D>();
+
+        if (enemyParameterScript == null)
+            enemyParameterScript = GetComponent<EnemyAttackParameterScript>();
+
         isFriend = false;
     }
+
 
     private void Update()
     {
@@ -37,15 +48,23 @@ public class EnemyScript : MonoBehaviour
         currentAcceptance += amount;
         acceptanceSlider.value = currentAcceptance;
 
-        if (currentAcceptance >= maxAcceptance)
+        if (currentAcceptance >= maxAcceptance && !bonusApplied)
         {
             Debug.Log("Switchin Sides");
-
 
             if (enemyParameterScript != null)
             {
                 enemyParameterScript.enabled = false;
                 isFriend = true;
+                gameObject.tag = "Friend";
+
+                PlayerDamageManager dmg = FindObjectOfType<PlayerDamageManager>();
+                if (dmg != null)
+                {
+                    dmg.AddFriendBonus(damageBonus);
+                }
+
+                bonusApplied = true;
             }
             else
             {
@@ -53,6 +72,7 @@ public class EnemyScript : MonoBehaviour
             }
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerAnxietyScript anxietyScript = collision.gameObject.GetComponent<PlayerAnxietyScript>();

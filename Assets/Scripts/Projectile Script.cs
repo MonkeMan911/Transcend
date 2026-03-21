@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
@@ -26,6 +26,12 @@ public class ProjectileScript : MonoBehaviour
 
         foreach (GameObject e in enemies)
         {
+            EnemyScript enemyScript = e.GetComponent<EnemyScript>();
+
+            // Skip if this enemy is now a friend
+            if (enemyScript != null && enemyScript.isFriend)
+                continue;
+
             float dist = Vector2.Distance(transform.position, e.transform.position);
             if (dist < minDist)
             {
@@ -36,6 +42,7 @@ public class ProjectileScript : MonoBehaviour
 
         return closest;
     }
+
 
     void Update()
     {
@@ -70,13 +77,17 @@ public class ProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        EnemyScript enemyScript = collision.gameObject.GetComponent<EnemyScript>();
-        if (enemyScript != null)
+        EnemyScript enemyScript = collision.collider.GetComponentInParent<EnemyScript>();
+
+        if (enemyScript != null && !enemyScript.isFriend)
         {
-            enemyScript.ChangeAcceptance(acceptanceNum);
-            Debug.Log("Hit Enemy!");
+            PlayerDamageManager dmg = FindObjectOfType<PlayerDamageManager>();
+            int finalDamage = dmg != null ? dmg.currentDamage : 1;
+
+            enemyScript.ChangeAcceptance(finalDamage);
+
+            Debug.Log("Hit Enemy for " + finalDamage);
             Destroy(gameObject);
-            
         }
     }
 }

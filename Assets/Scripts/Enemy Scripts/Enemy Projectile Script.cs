@@ -13,30 +13,20 @@ public class EnemyProjectileScript : MonoBehaviour
 
     void Start()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
-        playerPos = FindClosestPlayer();
-        Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-    }
+        enemy = transform.parent; // the enemy that fired this projectile
 
-    Transform FindClosestPlayer()
-    {
-        GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
-
-        Transform closest = null;
-        float minDist = Mathf.Infinity;
-
-        foreach (GameObject e in player)
+        if (enemy != null)
         {
-            float dist = Vector2.Distance(transform.position, e.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                closest = e.transform;
-            }
-        }
+            Collider2D enemyCol = enemy.GetComponent<Collider2D>();
+            Collider2D projCol = GetComponent<Collider2D>();
 
-        return closest;
+            if (enemyCol != null && projCol != null)
+                Physics2D.IgnoreCollision(enemyCol, projCol);
+        }
     }
+
+
+
 
     void Update()
     {

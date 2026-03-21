@@ -3,7 +3,12 @@ guid: 8d674c689dad1d94dab30279ef685315
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - enemyParameterScript: {fileID: 8091932681416142564, guid: 897bb4a7d5d9f5042aaa2b6db930503c, type: 3}
+  - enemiestoLoversScript: {instanceID: 0}
+  - acceptanceBarCamera: {instanceID: 0}
+  - enemyBarPos: {instanceID: 0}
+  - acceptanceSlider: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

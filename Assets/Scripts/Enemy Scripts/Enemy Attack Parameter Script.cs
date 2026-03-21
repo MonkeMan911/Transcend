@@ -39,15 +39,22 @@ public class EnemyAttackParameterScript : MonoBehaviour
     {
         isShooting = true;
 
-        while (playerInRange)
+        while (playerInRange && !GetComponent<EnemyScript>().isFriend)
         {
             ShootAtPlayer();
             yield return new WaitForSeconds(shootCooldown);
+            
+
         }
 
         isShooting = false;
     }
 
+    private void Update()
+    {
+        if (GetComponent<EnemyScript>().isFriend)
+            return;
+    }
     public void ShootAtPlayer()
     {
         if (player == null) return;
