@@ -2,20 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParryScript : MonoBehaviour
+public interface ParryScript
 {
-    public bool isParrying;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isParrying) 
-        {
-            
-        }
-    }
+    public void Deflect(Vector2 direction);
+    public float returnSpeed {  get; set; }
+    public bool IsParrying { get; set; }
 }

@@ -1,0 +1,45 @@
+{
+    "name": "Player Input",
+    "maps": [
+        {
+            "name": "Player Input",
+            "id": "48076042-8afc-4d19-b296-4334927c695d",
+            "actions": [
+                {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "914f4c91-c0ae-4f53-8766-cc01ae8fdc5f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3e95babb-34dd-4ec4-89fa-218506da99e8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66b83961-fc2f-4d3e-9780-aab26924b495",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
