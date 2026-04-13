@@ -158,13 +158,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  proSpeed: 10
+  proSpeed: 5
   deathDistance: 20
   homingDistance: 0
   anxiety: 1
   playerPos: {fileID: 0}
   proj: {fileID: 6346114340408833152}
-  <returnSpeed>k__BackingField: 10
+  <returnSpeed>k__BackingField: 5
 --- !u!50 &-4284333397384254987
 Rigidbody2D:
   serializedVersion: 4

@@ -6,6 +6,9 @@ public class PlayerParryInputScript : MonoBehaviour
 {
     [SerializeField] private ParryHitbox hitbox;
     private PlayerInput input;
+    [SerializeField] private float parryCooldown = 0.2f;
+    private float lastParryTime;
+
 
     private void Awake()
     {
@@ -14,12 +17,12 @@ public class PlayerParryInputScript : MonoBehaviour
 
     private void OnEnable()
     {
-        input.actions["Parry"].performed += OnParry;
+        input.actions["Parry"].started += OnParry;
     }
 
     private void OnDisable()
     {
-        input.actions["Parry"].performed -= OnParry;
+        input.actions["Parry"].started -= OnParry;
     }
 
     private void OnParry(InputAction.CallbackContext ctx)
@@ -29,6 +32,15 @@ public class PlayerParryInputScript : MonoBehaviour
 
     private void TryParry()
     {
+
+        if (Time.time < lastParryTime + parryCooldown)
+            return;
+
+        lastParryTime = Time.time;
+
+        if (hitbox.inside.Count == 0)
+            return;
+
         if (hitbox.inside.Count == 0)
             return;
 

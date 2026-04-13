@@ -26,23 +26,30 @@ public class EnemyProjectileScript : MonoBehaviour, ParryScript
     private Rigidbody2D projRB;
     void Start()
     {
-        enemy = transform.parent;
+        IsParrying = false;
+        time = 0f;
 
+        enemy = transform.parent;
         projCol = GetComponent<Collider2D>();
         enemyCol = enemy != null ? enemy.GetComponent<Collider2D>() : null;
 
         SetIgnoreEnemyCollision(true);
         projRB = GetComponent<Rigidbody2D>();
     }
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (IsParrying)
         {
             parrySpeed = speedCurve.Evaluate(time);
             time += Time.fixedDeltaTime;
-            projRB.velocity = transform.right * returnSpeed;
+            projRB.velocity = transform.up * returnSpeed * parrySpeed;
+            return;
         }
+
+        Vector2 moveDir = transform.up;
+        projRB.velocity = moveDir * proSpeed;
     }
+
 
     public void SetIgnoreEnemyCollision(bool shouldIgnore)
     {
@@ -67,19 +74,19 @@ void Update()
 
         float distanceToEnemy = Vector2.Distance(transform.position, playerPos.position);
 
-        // Homing behavior
+
         if (distanceToEnemy < homingDistance)
         {
             // Rotate toward Player
             Vector2 dir = (playerPos.position - transform.position).normalized;
             transform.up = dir;
 
-            // Move in new direction
+
             transform.Translate(Vector2.up * proSpeed * Time.deltaTime);
         }
         else
         {
-            // Normal forward movement
+
             transform.Translate(Vector2.up * proSpeed * Time.deltaTime);
         }
 
@@ -116,7 +123,11 @@ void Update()
 
     public void Deflect(Vector2 direction)
     {
+        if (IsParrying)
+            return;
+
         IsParrying = true;
+        time = 0f;
 
         SetIgnoreEnemyCollision(false);
 
