@@ -3,14 +3,27 @@ using UnityEngine;
 
 public class ParryHitbox : MonoBehaviour
 {
-    public readonly List<ParryScript> inside = new();
+    private readonly Dictionary<ParryScript, float> inside = new();
+    private const float parryGraceTime = 0.05f; // 50 ms grace
+
+    public IEnumerable<ParryScript> ValidParries
+    {
+        get
+        {
+            foreach (var kvp in inside)
+            {
+                if (Time.time >= kvp.Value + parryGraceTime)
+                    yield return kvp.Key;
+            }
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent<ParryScript>(out var parry))
         {
-            if (!inside.Contains(parry))
-                inside.Add(parry);
+            if (!inside.ContainsKey(parry))
+                inside.Add(parry, Time.time);
         }
     }
 
@@ -20,6 +33,7 @@ public class ParryHitbox : MonoBehaviour
         {
             inside.Remove(parry);
         }
-    }
-}
 
+    }
+
+}

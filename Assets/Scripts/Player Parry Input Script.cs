@@ -38,16 +38,16 @@ public class PlayerParryInputScript : MonoBehaviour
 
         lastParryTime = Time.time;
 
-        if (hitbox.inside.Count == 0)
+        if (!hitbox.ValidParries.Any())
             return;
 
-        if (hitbox.inside.Count == 0)
+        if (!hitbox.ValidParries.Any())
             return;
 
         ParryScript closest = null;
         float bestDist = Mathf.Infinity;
 
-        foreach (var p in hitbox.inside)
+        foreach (var p in hitbox.ValidParries)
         {
             var mb = (MonoBehaviour)p;
             float d = Vector2.Distance(transform.position, mb.transform.position);
