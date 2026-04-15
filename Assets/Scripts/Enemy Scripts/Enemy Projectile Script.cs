@@ -125,7 +125,7 @@ void Update()
     {
         if (IsParrying)
             return;
-
+        
         IsParrying = true;
         time = 0f;
 
@@ -134,6 +134,9 @@ void Update()
         transform.up = direction;
 
         projRB.velocity = transform.up * returnSpeed;
+        
+        gameObject.layer = LayerMask.NameToLayer("ParriedProjectile");
+
     }
 
 }

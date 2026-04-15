@@ -4,7 +4,7 @@ using UnityEngine;
 public class ParryHitbox : MonoBehaviour
 {
     private readonly Dictionary<ParryScript, float> inside = new();
-    private const float parryGraceTime = 0.05f; // 50 ms grace
+    private const float parryGraceTime = 0.1f;
 
     public IEnumerable<ParryScript> ValidParries
     {

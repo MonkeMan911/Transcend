@@ -254,7 +254,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageBonus: 1
   enemyParameterScript: {fileID: 8091932681416142564}
-  enemiestoLoversScript: {fileID: 7894903979255262336, guid: add7f5d8254a5844c9082b0bb8c56b33, type: 3}
+  enemiestoLoversScript: {fileID: 0}
   isFriend: 0
   acceptanceBarCamera: {fileID: 0}
   enemyBarPos: {fileID: 406317741413832187}
@@ -354,6 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6621851399627375400, guid: 244bde07a5f0eeb4e9597233b8e97b25, type: 3}
   shootCooldown: 1
+  projectileSpawnDistance: 2
   speed: 2
   player: {fileID: 0}
 --- !u!1 &4835817375276960722

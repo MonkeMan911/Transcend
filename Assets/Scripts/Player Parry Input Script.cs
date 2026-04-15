@@ -38,10 +38,8 @@ public class PlayerParryInputScript : MonoBehaviour
 
         lastParryTime = Time.time;
 
-        if (!hitbox.ValidParries.Any())
-            return;
-
-        if (!hitbox.ValidParries.Any())
+        var valid = hitbox.ValidParries.ToList();
+        if (valid.Count == 0)
             return;
 
         ParryScript closest = null;

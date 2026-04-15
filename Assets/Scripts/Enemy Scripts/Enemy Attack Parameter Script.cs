@@ -5,6 +5,7 @@ public class EnemyAttackParameterScript : MonoBehaviour
     [Header("Shooting Settings")]
     public GameObject projectilePrefab;
     public float shootCooldown = 1f;
+    [SerializeField] private float projectileSpawnDistance = 1.5f;
 
     [Header("Movement")]
     public float speed;
@@ -59,13 +60,13 @@ public class EnemyAttackParameterScript : MonoBehaviour
     {
         if (player == null) return;
 
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-
         Vector3 dir = (player.position - transform.position).normalized;
 
+        Vector3 spawnPos = transform.position + dir * projectileSpawnDistance;
+
+        GameObject projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
         projectile.transform.up = dir;
 
-        projectile.transform.Translate(Vector2.up * 1.5f, Space.Self);
     }
 
     private void OnDisable()
