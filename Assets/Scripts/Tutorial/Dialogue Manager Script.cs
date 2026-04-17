@@ -8,6 +8,7 @@ public class DialogueManagerScript : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public Queue<string> sentences;
+    [SerializeField] private float typeSpeed;
     void Start()
     {
         sentences = new Queue<string>();
@@ -47,7 +48,7 @@ public class DialogueManagerScript : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null;
+            yield return new WaitForSeconds(typeSpeed);
         }
     }
     void EndDialogue() 
