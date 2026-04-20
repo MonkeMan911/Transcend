@@ -323,6 +323,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &330118920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7573580260575186582, guid: add7f5d8254a5844c9082b0bb8c56b33, type: 3}
+  m_PrefabInstance: {fileID: 7752137840921017108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &382482927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7236977, y: 0}
   m_AnchorMax: {x: 1, y: 0.202}
-  m_AnchoredPosition: {x: 0.23001099, y: 0.009994507}
+  m_AnchoredPosition: {x: 0.22998047, y: 0.009994507}
   m_SizeDelta: {x: 1.7544861, y: 0.21530151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073641447
@@ -1424,7 +1429,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4289005828793518678, guid: add7f5d8254a5844c9082b0bb8c56b33, type: 3}
   m_PrefabInstance: {fileID: 7752137840921017108}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 330118920}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90cde065aa45a074bbea7e913cef5f3e, type: 3}
@@ -1435,7 +1440,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7894903979255262336, guid: add7f5d8254a5844c9082b0bb8c56b33, type: 3}
   m_PrefabInstance: {fileID: 7752137840921017108}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 330118920}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0628ed5797bcda448320755c314a217, type: 3}
@@ -1515,6 +1520,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   hoverSign: {fileID: 268840076}
+  colliderBox: {fileID: 1214653121}
+  player: {fileID: 330118920}
 --- !u!61 &1214653121
 BoxCollider2D:
   m_ObjectHideFlags: 0

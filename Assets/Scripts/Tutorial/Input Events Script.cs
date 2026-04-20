@@ -7,21 +7,28 @@ public class InputEventsScript : MonoBehaviour
 {
     [SerializeField] UnityEvent pressE;
     [SerializeField] GameObject hoverSign;
+    [SerializeField] GameObject player;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hoverSign.SetActive(true);
-        
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         hoverSign.SetActive(false);
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (collision.CompareTag("Player"))
         {
-             pressE.Invoke();
+            Debug.Log("Player In Collision");
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                pressE.Invoke();
+                Debug.Log("Event Invoked");
+            }
         }
     }
 }
