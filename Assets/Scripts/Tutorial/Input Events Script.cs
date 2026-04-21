@@ -27,7 +27,7 @@ public class InputEventsScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 pressE.Invoke();
-                Debug.Log("Event Invoked");
+                Debug.LogWarning("Event Invoked");
             }
         }
     }
