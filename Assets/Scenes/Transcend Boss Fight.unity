@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageBonus: 1
   bossParameterScript: {fileID: 46711036}
-  bossTeamUpScript: {fileID: 0}
+  bossTeamUpScript: {fileID: 4289005827803083778}
   isFriend: 0
   p1maxAcceptance: 20
   p2maxAcceptance: 30
@@ -254,11 +254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93df33789c9195847a8473dbb82dbc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6621851399627375400, guid: 244bde07a5f0eeb4e9597233b8e97b25, type: 3}
+  projectilePrefab: {fileID: 566872223739270802, guid: 27291902fdee62f4995625a3607329c2, type: 3}
   shootCooldown: 1
   projectileSpawnDistance: 1.5
-  speed: 0
-  player: {fileID: 0}
+  speed: 2
+  player: {fileID: 1705592168044896743}
 --- !u!60 &46711037
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1705592168044896743}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 10
@@ -2878,6 +2878,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2084125324590739363, guid: 4b9d5673963e88c40a8969bbbee9e77d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1439236444}
     - target: {fileID: 2220576629457549533, guid: 4b9d5673963e88c40a8969bbbee9e77d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.26
@@ -2918,6 +2922,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4354685887350942938, guid: 4b9d5673963e88c40a8969bbbee9e77d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5981047380766933727, guid: 4b9d5673963e88c40a8969bbbee9e77d, type: 3}
       propertyPath: anxietySlider
       value: 
@@ -2944,6 +2952,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90cde065aa45a074bbea7e913cef5f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4289005827803083778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1949276291853086292, guid: 4b9d5673963e88c40a8969bbbee9e77d, type: 3}
+  m_PrefabInstance: {fileID: 3629308658973434942}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd03ccdd3cbd0ef4991d5532496bc1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

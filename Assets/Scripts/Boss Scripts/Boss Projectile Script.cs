@@ -11,7 +11,7 @@ public class BossProjectileScript : MonoBehaviour
     [SerializeField] private int anxiety;
 
     public Transform playerPos;
-    private Transform enemy;
+    private Transform boss;
 
     [SerializeField] private Transform proj;
 
@@ -30,9 +30,9 @@ public class BossProjectileScript : MonoBehaviour
         IsParrying = false;
         time = 0f;
 
-        enemy = transform.parent;
+        boss = transform.parent;
         projCol = GetComponent<Collider2D>();
-        bossCol = enemy != null ? enemy.GetComponent<Collider2D>() : null;
+        bossCol = boss != null ? boss.GetComponent<Collider2D>() : null;
 
         SetIgnoreEnemyCollision(true);
         projRB = GetComponent<Rigidbody2D>();
@@ -91,7 +91,7 @@ public class BossProjectileScript : MonoBehaviour
             transform.Translate(Vector2.up * proSpeed * Time.deltaTime);
         }
 
-        if (Vector2.Distance(transform.position, enemy.position) > deathDistance)
+        if (Vector2.Distance(transform.position, boss.position) > deathDistance)
             Destroy(gameObject);
 
     }
