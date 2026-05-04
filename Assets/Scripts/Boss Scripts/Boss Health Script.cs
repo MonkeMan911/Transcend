@@ -47,68 +47,69 @@ public class BossHealthScript : MonoBehaviour
         isPhase1 = true;
         isPhase2 = false; 
         isPhase3 = false;
+        StartPhaseOne(isPhase1 = true);
     }
 
 
     private void Update()
     {
+        if (!isPhase1) 
+        {
+            phase1Slider.enabled = false;
+            phase1Slider.gameObject.SetActive(false);
+        }
+        if (!isPhase2) 
+        {
+            phase2Slider.enabled = false;
+            phase2Slider.gameObject.SetActive(false);
+        }
+        if (!isPhase3) 
+        {
+            phase3Slider.enabled = false;
+            phase3Slider.gameObject.SetActive(false);
+        }
     }
 
-    public void ChangeAcceptance(int amount)
+    public void ChangeAcceptance(params int[] amounts)
     {
-        p1CurrentAcceptance += amount;
-        phase1Slider.value = p1CurrentAcceptance;
-
-        if (p1CurrentAcceptance >= p1maxAcceptance && isPhase1 == true)
+        
+        // Phase 1
+        if (isPhase1 && amounts.Length > 0)
         {
-            
-            phase2Slider.value = p2maxAcceptance;
-            p2CurrentAcceptance = minAcceptance;
-            phase2Slider.value = minAcceptance;
-            p2CurrentAcceptance += amount;
+            p1CurrentAcceptance += amounts[0];
+            phase1Slider.value = p1CurrentAcceptance;
+
+            if (p1CurrentAcceptance >= p1maxAcceptance)
+            {
+                StartPhaseTwo(isPhase2 = true);
+            }
+        }
+
+        // Phase 2
+        if (isPhase2 && amounts.Length > 1)
+        {
+            p2CurrentAcceptance += amounts[1];
             phase2Slider.value = p2CurrentAcceptance;
 
-            phase1Slider.enabled = false;
-            phase2Slider.enabled = true;
-            isPhase1 = false;
-            isPhase2 = true;
-            if (p2CurrentAcceptance >= p2maxAcceptance && isPhase2 == true) 
+            if (p2CurrentAcceptance >= p2maxAcceptance)
             {
-                phase3Slider.value = p3maxAcceptance;
-                p2CurrentAcceptance = minAcceptance;
-                phase3Slider.value = minAcceptance;
-                p3CurrentAcceptance += amount;
-                phase3Slider.value = p3CurrentAcceptance;
+                StartPhaseThree(isPhase3 = true);
+            }
+        }
 
-                phase2Slider.enabled = false;
-                phase3Slider.enabled = true;
-                isPhase2 = false;
-                isPhase3 = true;
-                if (p3CurrentAcceptance >= p3maxAcceptance && isPhase3 == true) 
-                {
-                    Debug.Log("Boss Vanquished");
-                    if (bossTeamUpScript != null)
-                    {
-                        bossTeamUpScript.enabled = false;
-                        isFriend = true;
-                        gameObject.tag = "Friend";
+        // Phase 3
+        if (isPhase3 && amounts.Length > 2)
+        {
+            p3CurrentAcceptance += amounts[2];
+            phase3Slider.value = p3CurrentAcceptance;
 
-                        PlayerDamageManager dmg = FindObjectOfType<PlayerDamageManager>();
-                        if (dmg != null)
-                        {
-                            dmg.AddFriendBonus(damageBonus);
-                        }
-
-                        bonusApplied = true;
-                    }
-                    else
-                    {
-                        Debug.LogWarning("EnemyAttackParameterScript reference is missing!");
-                    }
-                }
+            if (p3CurrentAcceptance >= p3maxAcceptance)
+            {
+                BossToLover();
             }
         }
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -117,6 +118,54 @@ public class BossHealthScript : MonoBehaviour
         if (anxietyScript != null)
         {
             anxietyScript.ChangeAnxiety(anxiety);
+        }
+    }
+
+    public void StartPhaseOne(bool isPhase1) 
+    {
+        phase1Slider.enabled = true;
+        phase1Slider.gameObject.SetActive(true);
+        isPhase1 = true;
+        isPhase2 = false;
+        isPhase3 = false;
+    } 
+    public void StartPhaseTwo(bool isPhase2) 
+    {
+        phase2Slider.enabled = true;
+        phase2Slider.gameObject.SetActive(true);
+        isPhase2 = true;
+        isPhase1 = false;
+        isPhase3 = false;
+    } 
+    public void StartPhaseThree(bool isPhase3) 
+    {
+        phase3Slider.enabled = true;
+        phase3Slider.gameObject.SetActive(true);
+        isPhase3 = true;
+        isPhase1 = false;
+        isPhase2 = false;
+    }
+    private void BossToLover()
+    {
+        Debug.Log("Boss Vanquished");
+
+        if (bossTeamUpScript != null)
+        {
+            bossTeamUpScript.enabled = false;
+            isFriend = true;
+            gameObject.tag = "Friend";
+
+            PlayerDamageManager dmg = FindObjectOfType<PlayerDamageManager>();
+            if (dmg != null)
+            {
+                dmg.AddFriendBonus(damageBonus);
+            }
+
+            bonusApplied = true;
+        }
+        else
+        {
+            Debug.LogWarning("BossAttackParameterScript reference is missing!");
         }
     }
 

@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot:
-    prefab: {fileID: 6621851399627375400, guid: 691c2dfde1494d14e8443820009b0e72, type: 3}
+    prefab: {fileID: 6621851399627375400, guid: 32cd5c18fbf1f1f4e9ee807bf41a19d4, type: 3}
   weaponCooldown: 2
   currentClip: 0
   maxClipSize: 10
