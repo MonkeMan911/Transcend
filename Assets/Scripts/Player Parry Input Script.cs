@@ -84,5 +84,24 @@ public class PlayerParryInputScript : MonoBehaviour
 
         return best;
     }
+    private BossProjectileScript FindClosestBossProjectile()
+    {
+        BossProjectileScript[] all = FindObjectsOfType<BossProjectileScript>();
+
+        float bestDist = Mathf.Infinity;
+        BossProjectileScript best = null;
+
+        foreach (var p in all)
+        {
+            float d = Vector2.Distance(transform.position, p.transform.position);
+            if (d < bestDist && d < 2f)
+            {
+                bestDist = d;
+                best = p;
+            }
+        }
+
+        return best;
+    }
 
 }

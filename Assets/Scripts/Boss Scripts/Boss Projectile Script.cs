@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossProjectileScript : MonoBehaviour
+public class BossProjectileScript : MonoBehaviour, ParryScript
 {
     [SerializeField] private AnimationCurve speedCurve;
     public float proSpeed = 10f;
@@ -25,18 +25,22 @@ public class BossProjectileScript : MonoBehaviour
     private Collider2D bossCol;
 
     private Rigidbody2D projRB;
+
     void Start()
     {
         IsParrying = false;
         time = 0f;
 
         boss = transform.parent;
+
         projCol = GetComponent<Collider2D>();
         bossCol = boss != null ? boss.GetComponent<Collider2D>() : null;
 
         SetIgnoreEnemyCollision(true);
+
         projRB = GetComponent<Rigidbody2D>();
     }
+
     void FixedUpdate()
     {
         if (IsParrying)
@@ -51,7 +55,6 @@ public class BossProjectileScript : MonoBehaviour
         projRB.velocity = moveDir * proSpeed;
     }
 
-
     public void SetIgnoreEnemyCollision(bool shouldIgnore)
     {
         if (bossCol == null || projCol == null)
@@ -63,8 +66,6 @@ public class BossProjectileScript : MonoBehaviour
         Physics2D.IgnoreCollision(bossCol, projCol, shouldIgnore);
     }
 
-
-
     void Update()
     {
         if (playerPos == null)
@@ -73,27 +74,18 @@ public class BossProjectileScript : MonoBehaviour
             return;
         }
 
-        float distanceToEnemy = Vector2.Distance(transform.position, playerPos.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
 
-
-        if (distanceToEnemy < homingDistance)
+        if (distanceToPlayer < homingDistance)
         {
-            // Rotate toward Player
             Vector2 dir = (playerPos.position - transform.position).normalized;
             transform.up = dir;
-
-
-            transform.Translate(Vector2.up * proSpeed * Time.deltaTime);
         }
-        else
-        {
 
-            transform.Translate(Vector2.up * proSpeed * Time.deltaTime);
-        }
+        transform.Translate(Vector2.up * proSpeed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, boss.position) > deathDistance)
             Destroy(gameObject);
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -103,7 +95,6 @@ public class BossProjectileScript : MonoBehaviour
         if (anxietyScript != null)
         {
             anxietyScript.ChangeAnxiety(anxiety);
-            Debug.Log("Hit Player!");
             Destroy(gameObject);
         }
         else
@@ -115,8 +106,6 @@ public class BossProjectileScript : MonoBehaviour
                 int finalDamage = dmg != null ? dmg.currentDamage : 1;
 
                 bossScript.ChangeAcceptance(finalDamage);
-
-                Debug.Log("Hit Enemy for " + finalDamage);
                 Destroy(gameObject);
             }
         }
@@ -137,6 +126,5 @@ public class BossProjectileScript : MonoBehaviour
         projRB.velocity = transform.up * returnSpeed;
 
         gameObject.layer = LayerMask.NameToLayer("ParriedProjectile");
-
     }
 }

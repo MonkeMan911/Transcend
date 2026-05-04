@@ -36,9 +36,18 @@ public class BossHealthScript : MonoBehaviour
 
     private void Start()
     {
+        //phase 1 slider
         p1CurrentAcceptance = minAcceptance;
         phase1Slider.maxValue = p1maxAcceptance;
         phase1Slider.value = minAcceptance;
+        //phase 2 slider
+        p2CurrentAcceptance = minAcceptance;
+        phase2Slider.maxValue = p2maxAcceptance;
+        phase2Slider.value = minAcceptance;
+        //phase 3 slider
+        p3CurrentAcceptance = minAcceptance;
+        phase3Slider.maxValue = p3maxAcceptance;
+        phase3Slider.value = minAcceptance;
 
         if (bossParameterScript == null)
             bossParameterScript = GetComponent<BossAttackParameterScript>();
