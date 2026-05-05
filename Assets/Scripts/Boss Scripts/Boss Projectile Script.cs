@@ -21,8 +21,8 @@ public class BossProjectileScript : MonoBehaviour, ParryScript
 
     private float parrySpeed, time;
 
-    private Collider2D projCol;
-    private Collider2D bossCol;
+    [SerializeField] private Collider2D projCol;
+    [SerializeField] private Collider2D bossCol;
 
     private Rigidbody2D projRB;
 
@@ -30,14 +30,10 @@ public class BossProjectileScript : MonoBehaviour, ParryScript
     {
         IsParrying = false;
         time = 0f;
-
-        boss = transform.parent;
-
-        projCol = GetComponent<Collider2D>();
-        bossCol = boss != null ? boss.GetComponent<Collider2D>() : null;
-
         SetIgnoreEnemyCollision(true);
-
+    }
+    void Awake() 
+    {
         projRB = GetComponent<Rigidbody2D>();
     }
 

@@ -7,7 +7,7 @@ public class BossAttackParameterScript : MonoBehaviour
     [Header("Shooting Settings")]
     public GameObject projectilePrefab;
     public float shootCooldown = 1f;
-    [SerializeField] private float projectileSpawnDistance = 1.5f;
+    [SerializeField] private float projectileSpawnDistance = 2f;
 
     [Header("Movement")]
     public float speed;
@@ -38,7 +38,7 @@ public class BossAttackParameterScript : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator ShootLoop()
+    private IEnumerator ShootLoop()
     {
         isShooting = true;
 

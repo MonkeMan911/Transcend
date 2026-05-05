@@ -192,3 +192,5 @@ MonoBehaviour:
   playerPos: {fileID: 0}
   proj: {fileID: 5335424602037545127}
   <returnSpeed>k__BackingField: 5
+  projCol: {fileID: 2231420540738624641}
+  bossCol: {fileID: 1554751157820243324, guid: 4d490904e14425644b4f5966d6368606, type: 3}
