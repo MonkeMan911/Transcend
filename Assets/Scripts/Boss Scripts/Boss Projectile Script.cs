@@ -21,8 +21,10 @@ public class BossProjectileScript : MonoBehaviour, ParryScript
 
     private float parrySpeed, time;
 
+    [Header("Colliders")]
     [SerializeField] private Collider2D projCol;
     [SerializeField] private Collider2D bossCol;
+    [SerializeField] private Collider2D tilemapCollider;
 
     private Rigidbody2D projRB;
 
@@ -102,6 +104,10 @@ public class BossProjectileScript : MonoBehaviour, ParryScript
                 int finalDamage = dmg != null ? dmg.currentDamage : 1;
 
                 bossScript.ChangeAcceptance(finalDamage);
+                Destroy(gameObject);
+            }
+            if (collision.gameObject.name == "Layer1") 
+            {
                 Destroy(gameObject);
             }
         }
