@@ -31,7 +31,9 @@ public class BossHealthScript : MonoBehaviour
     public bool isPhase1;
     public bool isPhase2;
     public bool isPhase3;
-    
+
+    [Header("Misc")]
+    [SerializeField] private GameObject manager;
 
 
     private void Start()
@@ -115,6 +117,7 @@ public class BossHealthScript : MonoBehaviour
             if (p3CurrentAcceptance >= p3maxAcceptance)
             {
                 BossToLover();
+                manager.GetComponent<ChangeMaterialScript>().MatterialSwapper();
             }
         }
     }
