@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BossTeleportScript : MonoBehaviour
 {
+    [SerializeField] BossHealthScript phases;
     [SerializeField] Transform[] teleportLocs;
     [SerializeField] float timeLeft;
     [SerializeField] float originalTime;
@@ -13,19 +14,28 @@ public class BossTeleportScript : MonoBehaviour
     }
     private void Update()
     {
-        if (timeLeft > 0)
+        if (phases.isPhase3 == true) 
         {
-            timeLeft -= Time.deltaTime;
-        }
-        else if (timeLeft <= 0)
-        {
-            timeLeft = originalTime;
-            canTP = Random.value > 0.25f;
-            if (canTP == true) 
+            if (timeLeft > 0 && phases.bossIsDead == false)
             {
-                Teleport();
-                canTP = false;
+                timeLeft -= Time.deltaTime;
             }
+            else if (timeLeft <= 0)
+            {
+                timeLeft = originalTime;
+                canTP = Random.value > 0.25f;
+                if (canTP)
+                {
+                    Teleport();
+                    canTP = false;
+                }
+            }
+        }
+        else if (phases.bossIsDead == true)
+        {
+            phases.isPhase3 = false;
+            canTP = false;
+            return;
         }
     }
 
@@ -33,7 +43,7 @@ public class BossTeleportScript : MonoBehaviour
     {
         if (teleportLocs == null || teleportLocs.Length == 0)
         {
-            Debug.LogWarning("No teleport locations assigned!");
+            Debug.LogWarning("Nuh Uh");
             return;
         }
 

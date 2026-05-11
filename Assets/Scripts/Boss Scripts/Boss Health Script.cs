@@ -31,6 +31,7 @@ public class BossHealthScript : MonoBehaviour
     public bool isPhase1;
     public bool isPhase2;
     public bool isPhase3;
+    public bool bossIsDead = false;
 
     [Header("Misc")]
     [SerializeField] private GameObject manager;
@@ -118,6 +119,8 @@ public class BossHealthScript : MonoBehaviour
             {
                 BossToLover();
                 manager.GetComponent<ChangeMaterialScript>().MatterialSwapper();
+                bossIsDead = true;
+                Debug.Log(bossIsDead);
             }
         }
     }
