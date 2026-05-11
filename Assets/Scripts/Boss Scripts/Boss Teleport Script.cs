@@ -5,6 +5,7 @@ public class BossTeleportScript : MonoBehaviour
     [SerializeField] Transform[] teleportLocs;
     [SerializeField] float timeLeft;
     [SerializeField] float originalTime;
+    [SerializeField] bool canTP;
 
     private void Awake()
     {
@@ -15,12 +16,16 @@ public class BossTeleportScript : MonoBehaviour
         if (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
-            Debug.Log(timeLeft);
         }
         else if (timeLeft <= 0)
         {
             timeLeft = originalTime;
-            Teleport();
+            canTP = Random.value > 0.25f;
+            if (canTP == true) 
+            {
+                Teleport();
+                canTP = false;
+            }
         }
     }
 
