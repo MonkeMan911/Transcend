@@ -1,27 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BossTeleportScript : MonoBehaviour
 {
     [SerializeField] Transform[] teleportLocs;
-    public void Start()
-    {
-        teleportLocs = new Transform[teleportLocs.Length];
-    }
+    [SerializeField] float timeLeft;
+    [SerializeField] float originalTime;
 
-    private void FixedUpdate()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        timeLeft = originalTime;
+    }
+    private void Update()
+    {
+        if (timeLeft > 0)
         {
+            timeLeft -= Time.deltaTime;
+            Debug.Log(timeLeft);
+        }
+        else if (timeLeft <= 0)
+        {
+            timeLeft = originalTime;
             Teleport();
         }
     }
 
     public void Teleport()
     {
-        Vector2 randomPos = new Vector2(Random.Range(0, teleportLocs.Length), Random.Range(0, teleportLocs.Length));
-        transform.position = randomPos;
+        if (teleportLocs == null || teleportLocs.Length == 0)
+        {
+            Debug.LogWarning("No teleport locations assigned!");
+            return;
+        }
+
+        int index = Random.Range(0, teleportLocs.Length);
+        Transform chosenSpot = teleportLocs[index];
+
+        transform.position = chosenSpot.position;
+
+        Debug.Log($"Teleported to point {index}");
     }
 }

@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 190227177}
   m_Layer: 0
   m_Name: TP (2)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 348182307}
   m_Layer: 0
   m_Name: TP (3)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 431813180}
   m_Layer: 0
   m_Name: TP (4)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 469144304}
   m_Layer: 0
   m_Name: TP (8)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1227,7 +1227,7 @@ GameObject:
   - component: {fileID: 784255316}
   m_Layer: 0
   m_Name: TP (1)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1461,7 +1461,7 @@ GameObject:
   - component: {fileID: 921860074}
   m_Layer: 0
   m_Name: TP (5)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2831,6 +2831,8 @@ MonoBehaviour:
   - {fileID: 469144303}
   - {fileID: 1838475782}
   - {fileID: 1692186104}
+  timeLeft: 0
+  originalTime: 5
 --- !u!1 &1692186103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2845,7 @@ GameObject:
   - component: {fileID: 1692186105}
   m_Layer: 0
   m_Name: TP (10)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3165,7 +3167,7 @@ GameObject:
   - component: {fileID: 1838475783}
   m_Layer: 0
   m_Name: TP (9)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3346,7 +3348,7 @@ GameObject:
   - component: {fileID: 2096918194}
   m_Layer: 0
   m_Name: TP (6)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3430,7 +3432,7 @@ GameObject:
   - component: {fileID: 2106462205}
   m_Layer: 0
   m_Name: TP (7)
-  m_TagString: Untagged
+  m_TagString: TP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
