@@ -8,7 +8,7 @@ public class BossPhase2BoxHoverScript : MonoBehaviour
     [SerializeField] BossHealthScript phases;
 
     [Header("Progression Nums")]
-    [SerializeField] int boxProgress1 = 0 , boxProgress2 = 0, boxProgress3 = 0, boxProgress4 = 0;
+    [SerializeField] float boxProgress1 = 0 , boxProgress2 = 0, boxProgress3 = 0, boxProgress4 = 0;
 
     [Header("Boxes")]
     [SerializeField] GameObject BoxDaddy, Box1, Box2, Box3, Box4;
@@ -25,6 +25,7 @@ public class BossPhase2BoxHoverScript : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(boxProgress1);
         if (phases.isPhase2) 
         {
             BoxDaddy.SetActive(true);
@@ -41,7 +42,7 @@ public class BossPhase2BoxHoverScript : MonoBehaviour
         {
             if (collision.CompareTag("Player") && Box1)
             {
-                boxProgress1++;
+                boxProgress1 += Time.deltaTime;
             }
         }
     }

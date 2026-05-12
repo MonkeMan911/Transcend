@@ -1520,7 +1520,6 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   hoverSign: {fileID: 268840076}
-  colliderBox: {fileID: 1214653121}
   player: {fileID: 330118920}
 --- !u!61 &1214653121
 BoxCollider2D:
