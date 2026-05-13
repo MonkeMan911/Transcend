@@ -32,6 +32,7 @@ public class BossHealthScript : MonoBehaviour
     public bool isPhase2;
     public bool isPhase3;
     public bool bossIsDead = false;
+    public bool canDamage;
 
     [Header("Misc")]
     [SerializeField] private GameObject manager;
@@ -60,6 +61,7 @@ public class BossHealthScript : MonoBehaviour
         isPhase2 = false; 
         isPhase3 = false;
         StartPhaseOne(isPhase1 = true);
+        canDamage = true;
     }
 
 
@@ -94,6 +96,7 @@ public class BossHealthScript : MonoBehaviour
             if (p1CurrentAcceptance >= p1maxAcceptance)
             {
                 StartPhaseTwo(isPhase2 = true);
+                canDamage = false;
             }
         }
 

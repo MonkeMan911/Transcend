@@ -80,7 +80,7 @@ public class BossFightProjectileScript : MonoBehaviour
     {
         BossHealthScript bossScript = collision.collider.GetComponentInParent<BossHealthScript>();
 
-        if (bossScript != null && !bossScript.isFriend)
+        if (bossScript != null && !bossScript.isFriend && bossScript.canDamage)
         {
             PlayerDamageManager dmg = FindObjectOfType<PlayerDamageManager>();
             int finalDamage = dmg != null ? dmg.currentDamage : 1;

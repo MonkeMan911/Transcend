@@ -8,10 +8,10 @@ public class BossPhase2BoxHoverScript : MonoBehaviour
     [SerializeField] BossHealthScript phases;
 
     [Header("Progression Nums")]
-    [SerializeField] float boxProgress1 = 0 , boxProgress2 = 0, boxProgress3 = 0, boxProgress4 = 0;
+    [SerializeField] public float boxProgress1 = 0 , boxProgress2 = 0, boxProgress3 = 0, boxProgress4 = 0, targetNum;
 
     [Header("Boxes")]
-    [SerializeField] GameObject BoxDaddy, Box1, Box2, Box3, Box4;
+    [SerializeField] public GameObject BoxDaddy, Box1, Box2, Box3, Box4;
 
     [Header("Box Bools")]
     [SerializeField] bool isbox1, isbox2, isbox3, isbox4;
@@ -23,9 +23,16 @@ public class BossPhase2BoxHoverScript : MonoBehaviour
         Box3.GetComponent<Collider2D>();
         Box4.GetComponent<Collider2D>();
     }
+    private void Awake()
+    {
+        boxProgress1 = 0;
+        boxProgress2 = 0;
+        boxProgress3 = 0;
+        boxProgress4 = 0;
+    }
     void Update()
     {
-        Debug.Log(boxProgress1);
+
         if (phases.isPhase2) 
         {
             BoxDaddy.SetActive(true);
@@ -33,17 +40,26 @@ public class BossPhase2BoxHoverScript : MonoBehaviour
 
         if (isbox1 && isbox2 && isbox3 && isbox4) 
         {
-            
+            phases.canDamage = true;
+            BoxDaddy.SetActive(false);
         }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (phases.isPhase2) 
+
+        if (boxProgress1 >= targetNum) 
         {
-            if (collision.CompareTag("Player") && Box1)
-            {
-                boxProgress1 += Time.deltaTime;
-            }
+            isbox1 = true;
+        }
+        if (boxProgress2 >= targetNum) 
+        {
+            isbox2 = true;
+        }
+        if (boxProgress3 >= targetNum) 
+        {
+            isbox3 = true;
+        }
+        if (boxProgress4 >= targetNum) 
+        {
+            isbox4 = true;
         }
     }
+    
 }
