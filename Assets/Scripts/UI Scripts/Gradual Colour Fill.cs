@@ -27,13 +27,13 @@ public class GradualColourFill : MonoBehaviour
     {
         if (spriteRenderer.Length < 4 || box == null) return;
 
-        SetAlpha(spriteRenderer[3], box.boxProgress1, box.targetNum);
+        SetAlpha(spriteRenderer[0], box.boxProgress1, box.targetNum);
 
-        SetAlpha(spriteRenderer[2], box.boxProgress2, box.targetNum);
+        SetAlpha(spriteRenderer[1], box.boxProgress2, box.targetNum);
 
-        SetAlpha(spriteRenderer[1], box.boxProgress3, box.targetNum);
+        SetAlpha(spriteRenderer[2], box.boxProgress3, box.targetNum);
 
-        SetAlpha(spriteRenderer[0], box.boxProgress4, box.targetNum);
+        SetAlpha(spriteRenderer[3], box.boxProgress4, box.targetNum);
     }
 
     private void SetAlpha(SpriteRenderer sr, float progress, float target)
