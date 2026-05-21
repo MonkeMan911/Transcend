@@ -9,7 +9,7 @@ public class ProjectileScript : MonoBehaviour
     public Transform enemyPos;
     private Transform player;
     [SerializeField] private Transform proj;
-
+ 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;

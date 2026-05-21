@@ -10,6 +10,7 @@ TagManager:
   - Friend
   - TP
   - FilledBox
+  - Text
   layers:
   - Default
   - TransparentFX

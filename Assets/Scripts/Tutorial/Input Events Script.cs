@@ -8,27 +8,28 @@ public class InputEventsScript : MonoBehaviour
     [SerializeField] UnityEvent pressE;
     [SerializeField] GameObject hoverSign;
     [SerializeField] GameObject player;
-
+    [SerializeField] bool isInTrigger;
+    private void Update()
+    {
+        if (isInTrigger && Input.GetKeyDown(KeyCode.E)) 
+        {
+            pressE.Invoke();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        hoverSign.SetActive(true);
-
+        if (collision.CompareTag("Player"))
+        {    
+            hoverSign.SetActive(true);
+            isInTrigger = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        hoverSign.SetActive(false);
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player In Collision");
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                pressE.Invoke();
-                Debug.LogWarning("Event Invoked");
-            }
+            hoverSign.SetActive(false);
+            isInTrigger = false;
         }
     }
 }

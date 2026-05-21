@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     public float weaponCooldown;
     public int currentClip, maxClipSize = 10;
     public bool isReloading;
+    [SerializeField] AudioSource audioSource;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                audioSource.Play();
                 GameObject projectile = Instantiate(shoot.prefab);
 
                 projectile.transform.position = transform.position;

@@ -139,3 +139,5 @@ MonoBehaviour:
   acceptanceNum: 1
   enemyPos: {fileID: 0}
   proj: {fileID: 6346114340408833152}
+  audioSource: {fileID: 0}
+  clip: {fileID: 0}
