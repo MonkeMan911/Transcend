@@ -7,6 +7,7 @@ public class InputEventsScript : MonoBehaviour
 {
     [SerializeField] UnityEvent pressE;
     [SerializeField] GameObject hoverSign;
+    [SerializeField] GameObject pannel;
     [SerializeField] GameObject player;
     [SerializeField] bool isInTrigger;
     private void Update()
@@ -29,6 +30,7 @@ public class InputEventsScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             hoverSign.SetActive(false);
+            pannel.SetActive(false);
             isInTrigger = false;
         }
     }

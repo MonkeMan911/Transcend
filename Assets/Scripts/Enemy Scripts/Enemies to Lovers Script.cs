@@ -6,6 +6,7 @@ public class EnemiestoLoversScript : MonoBehaviour
     [Header("Friend Settings")]
     public Vector3 baseOffset = new Vector3(1f, 0f, 0f);
     public float spacing = 1.5f;
+    public int enemiesKilled;
 
     private List<EnemyScript> friends = new List<EnemyScript>();
 
@@ -30,6 +31,7 @@ public class EnemiestoLoversScript : MonoBehaviour
 
         enemy.transform.SetParent(transform);
 
+        enemiesKilled++;
         Debug.Log("Added new friend: " + enemy.name);
     }
 

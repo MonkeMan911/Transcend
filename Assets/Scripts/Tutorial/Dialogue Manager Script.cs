@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManagerScript : MonoBehaviour
 {
-    public Text nameText;
-    public Text dialogueText;
+    public GameObject pannel;
+    public TMP_Text nameText;
+    public TMP_Text dialogueText;
     public Queue<string> sentences;
     [SerializeField] private float typeSpeed;
     void Start()
@@ -53,6 +55,7 @@ public class DialogueManagerScript : MonoBehaviour
     }
     void EndDialogue() 
     {
+        pannel.SetActive(false);
         Debug.Log("End of convo");
     }
 }

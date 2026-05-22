@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Transcend Boss Fight.unity
     guid: 0e3ba10ef8707d043a27f0286ce7d720
+  - enabled: 1
+    path: Assets/Scenes/Transcend Ending.unity
+    guid: 30e78b3d30c9e414c9fa6d8ebd5d3d45
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f6ee8afdca21cb343ae5c7e547ce91f7, type: 2}
